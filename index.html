@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FoodieGo — Good Food, Great Mood</title>
+<style>
+:root{--red:#e63946;--orange:#ff8a00;--ink:#1f2937;--muted:#6b7280;--cream:#fff7f3;--line:#f0e6e1;--white:#fff;--green:#16834a}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#fff}
+button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:0 22px}
+header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line)}
+.nav{height:74px;display:flex;align-items:center;gap:28px}.brand{font-size:27px;font-weight:900;letter-spacing:-1.4px;color:var(--ink);white-space:nowrap}.brand span{color:var(--red)}.brand small{font-size:10px;display:block;letter-spacing:1.8px;color:var(--muted);font-weight:700;margin-top:-5px}
+.links{display:flex;gap:23px;margin-left:auto}.links a{color:#4b5563;text-decoration:none;font-weight:650;font-size:14px}.links a:hover{color:var(--red)}
+.location{font-size:13px;color:var(--muted);white-space:nowrap}.location b{color:var(--ink)}
+.cartbtn,.primary,.outline{border:0;border-radius:12px;padding:12px 17px;font-weight:750}.cartbtn,.primary{background:var(--red);color:#fff}.cartbtn{white-space:nowrap}.outline{background:white;color:var(--red);border:1px solid #f3a1a6}
+.hero{margin:28px auto 34px;background:linear-gradient(110deg,#fff0e9,#fff7f3 56%,#ffe0d4);border-radius:25px;min-height:310px;display:grid;grid-template-columns:1.1fr .9fr;overflow:hidden;align-items:center}
+.hero-copy{padding:42px 48px}.eyebrow{color:var(--red);font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}.hero h1{font-size:clamp(34px,5vw,55px);line-height:1.04;letter-spacing:-2px;margin:12px 0}.hero h1 span{color:var(--red)}.hero p{color:#596273;max-width:450px;line-height:1.65}.search{display:flex;background:#fff;padding:6px;border-radius:14px;box-shadow:0 8px 24px #a53c2515;max-width:470px;margin-top:23px}.search input{border:0;outline:0;min-width:0;flex:1;padding:10px 12px}.search button{padding:11px 20px}.hero-art{height:100%;min-height:280px;display:grid;place-items:center;position:relative}.food-plate{width:235px;height:235px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#f6bd55 0 38%,#b44d23 39% 45%,#f6e0b4 46% 52%,#344b32 53% 58%,#f9c66e 59%);box-shadow:0 22px 38px #7a392b33;display:grid;place-items:center;font-size:90px;transform:rotate(-10deg)}.floating{position:absolute;background:#fff;padding:12px 15px;border-radius:14px;box-shadow:0 8px 25px #572d221c;font-weight:800;font-size:13px}.f1{top:22%;left:4%}.f2{bottom:17%;right:6%}
+.section-head{display:flex;align-items:end;justify-content:space-between;margin:34px 0 17px}.section-head h2{font-size:24px;letter-spacing:-.7px;margin:0}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.muted-link{color:var(--red);font-weight:750;font-size:13px}
+.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.category{border:1px solid var(--line);border-radius:17px;padding:16px 8px;text-align:center;background:#fff;transition:.2s}.category:hover,.category.active{border-color:#f18a90;background:#fff5f3;transform:translateY(-2px)}.cat-icon{width:58px;height:58px;border-radius:50%;background:var(--cream);display:grid;place-items:center;font-size:30px;margin:0 auto 8px}.category b{font-size:13px}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:8px 13px;color:#596273;font-size:12px;font-weight:700}.chip.active{background:#fff0ee;border-color:#f0a0a5;color:var(--red)}
+.restaurants{display:grid;grid-template-columns:repeat(3,1fr);gap:19px}.card{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px #1f293710}.food-photo{height:165px;display:grid;place-items:center;font-size:76px;position:relative;background:linear-gradient(135deg,#f6d5a8,#f5a26b)}.food-photo.pizza{background:linear-gradient(135deg,#f6d9a4,#dc744c)}.food-photo.burger{background:linear-gradient(135deg,#f3d49a,#b66a35)}.food-photo.south{background:linear-gradient(135deg,#f6e2ac,#c6a06a)}.food-photo.chinese{background:linear-gradient(135deg,#f4c7a6,#a84e35)}.offer{position:absolute;bottom:10px;left:10px;background:#2563eb;color:white;padding:5px 8px;border-radius:6px;font-size:10px;font-weight:800}.heart{position:absolute;right:12px;top:12px;background:#fff;border:0;border-radius:50%;width:32px;height:32px}.card-body{padding:14px}.card-title{display:flex;justify-content:space-between;gap:8px;align-items:center}.card h3{font-size:16px;margin:0}.rating{background:var(--green);color:#fff;border-radius:6px;padding:4px 6px;font-size:11px;font-weight:800;white-space:nowrap}.card p{font-size:12px;color:var(--muted);margin:7px 0 11px}.meta{display:flex;justify-content:space-between;color:#6b7280;font-size:11px;border-top:1px solid #f4eeea;padding-top:10px}
+footer{margin-top:55px;background:#1f2937;color:#fff;padding:30px 0}.foot{display:flex;justify-content:space-between;gap:20px;align-items:center}.foot p{color:#cbd5e1;font-size:12px;margin:5px 0}
+.overlay{display:none;position:fixed;inset:0;background:#11182770;z-index:10}.overlay.show{display:block}.drawer{position:absolute;right:0;top:0;height:100%;width:min(420px,100%);background:#fff;padding:23px;overflow:auto}.drawer-head{display:flex;justify-content:space-between;align-items:center}.drawer-head h2{margin:0}.close{border:0;background:#f5f5f5;border-radius:50%;width:35px;height:35px;font-size:20px}.cart-item{display:flex;gap:12px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}.mini-food{width:55px;height:55px;border-radius:12px;background:var(--cream);display:grid;place-items:center;font-size:28px}.item-info{flex:1}.item-info b{font-size:13px}.item-info small{display:block;color:var(--muted);margin-top:4px}.qty{display:flex;align-items:center;gap:9px}.qty button{border:1px solid var(--line);background:#fff;border-radius:7px;width:25px;height:25px}.summary{margin-top:20px;background:var(--cream);padding:15px;border-radius:14px}.sumrow{display:flex;justify-content:space-between;margin:8px 0;font-size:13px}.sumrow.total{font-weight:850;font-size:17px;border-top:1px solid #eadbd3;padding-top:12px}.checkout{width:100%;margin-top:15px}.empty{text-align:center;color:var(--muted);padding:45px 10px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(90px);background:#1f2937;color:white;padding:12px 18px;border-radius:12px;z-index:20;font-size:13px;transition:.25s}.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:800px){.links{display:none}.nav{gap:12px;height:66px}.location{margin-left:auto}.hero{grid-template-columns:1fr;margin-top:18px}.hero-copy{padding:30px 25px 10px}.hero-art{min-height:210px}.food-plate{width:170px;height:170px;font-size:65px}.f1{left:10%;top:12%}.f2{right:8%;bottom:12%}.categories{grid-template-columns:repeat(3,1fr);gap:9px}.restaurants{grid-template-columns:repeat(2,1fr);gap:12px}.food-photo{height:125px;font-size:58px}.wrap{padding:0 15px}}
+@media(max-width:480px){.brand{font-size:23px}.location{font-size:11px}.cartbtn{padding:10px 12px;font-size:12px}.hero h1{font-size:37px}.restaurants{grid-template-columns:1fr}.food-photo{height:155px}.section-head h2{font-size:21px}.foot{display:block}.foot .brand{margin-bottom:15px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+ <div class="brand">Foodie<span>Go</span><small>GOOD FOOD • GREAT MOOD</small></div>
+ <nav class="links"><a href="#home">Home</a><a href="#restaurants">Restaurants</a><a href="#categories">Categories</a><a href="#about">About</a></nav>
+ <div class="location">Deliver to <b>📍 Chennai</b></div>
+ <button class="cartbtn" id="openCart">🛒 Cart <span id="cartCount">0</span></button>
+</div></header>
+<main class="wrap" id="home">
+<section class="hero">
+ <div class="hero-copy"><div class="eyebrow">Fresh picks, just for you</div><h1>Delicious food.<br><span>Delivered happy.</span></h1><p>Discover local favourites, explore new flavours and get the food you love delivered to your door.</p>
+  <div class="search"><input id="searchInput" placeholder="Search dishes or restaurants..." aria-label="Search dishes or restaurants"><button class="primary" id="searchBtn">Search</button></div>
+ </div><div class="hero-art"><div class="food-plate">🍛</div><div class="floating f1">⭐ 4.8 rated favourites</div><div class="floating f2">⚡ Fresh & fast</div></div>
+</section>
+<section id="categories"><div class="section-head"><div><h2>What are you craving?</h2><p>Pick a category to find your next favourite.</p></div></div>
+<div class="categories" id="categoryList">
+ <button class="category active" data-category="All"><div class="cat-icon">🍽️</div><b>All food</b></button>
+ <button class="category" data-category="Pizza"><div class="cat-icon">🍕</div><b>Pizza</b></button>
+ <button class="category" data-category="Burgers"><div class="cat-icon">🍔</div><b>Burgers</b></button>
+ <button class="category" data-category="South Indian"><div class="cat-icon">🥘</div><b>South Indian</b></button>
+ <button class="category" data-category="Chinese"><div class="cat-icon">🍜</div><b>Chinese</b></button>
+ <button class="category" data-category="Desserts"><div class="cat-icon">🍰</div><b>Desserts</b></button>
+</div></section>
+<section id="restaurants"><div class="section-head"><div><h2>Popular near you</h2><p>Handpicked places for a delicious day.</p></div><span class="muted-link">Explore all →</span></div>
+<div class="filters"><button class="chip active" data-filter="All">All</button><button class="chip" data-filter="Rating">Top rated</button><button class="chip" data-filter="Fast">Fast delivery</button><button class="chip" data-filter="Veg">Veg options</button></div>
+<div class="restaurants" id="restaurantGrid">
+ <article class="card" data-name="The Biryani House" data-category="South Indian" data-rating="4.8" data-fast="1" data-veg="1"><div class="food-photo south">🍛<span class="offer">20% OFF</span><button class="heart" aria-label="Save restaurant">♡</button></div><div class="card-body"><div class="card-title"><h3>The Biryani House</h3><span class="rating">4.8 ★</span></div><p>South Indian · Biryani · ₹250 for two</p><div class="meta"><span>⏱ 25–35 min</span><span>📍 1.2 km</span></div><button class="outline" style="width:100%;margin-top:12px" data-add="Chicken Biryani" data-price="220" data-emoji="🍛">Add popular dish · ₹220</button></div></article>
+ <article class="card" data-name="Pizza Palace" data-category="Pizza" data-rating="4.6" data-fast="1" data-veg="1"><div class="food-photo pizza">🍕<span class="offer">BUY 1 GET 1</span><button class="heart" aria-label="Save restaurant">♡</button></div><div class="card-body"><div class="card-title"><h3>Pizza Palace</h3><span class="rating">4.6 ★</span></div><p>Italian · Pizza · ₹400 for two</p><div class="meta"><span>⏱ 30–40 min</span><span>📍 2.0 km</span></div><button class="outline" style="width:100%;margin-top:12px" data-add="Margherita Pizza" data-price="199" data-emoji="🍕">Add popular dish · ₹199</button></div></article>
+ <article class="card" data-name="Burger Junction" data-category="Burgers" data-rating="4.5" data-fast="1" data-veg="0"><div class="food-photo burger">🍔<span class="offer">15% OFF</span><button class="heart" aria-label="Save restaurant">♡</button></div><div class="card-body"><div class="card-title"><h3>Burger Junction</h3><span class="rating">4.5 ★</span></div><p>Burgers · Fast food · ₹300 for two</p><div class="meta"><span>⏱ 20–30 min</span><span>📍 1.8 km</span></div><button class="outline" style="width:100%;margin-top:12px" data-add="Classic Veg Burger" data-price="149" data-emoji="🍔">Add popular dish · ₹149</button></div></article>
+ <article class="card" data-name="Wok & Bowl" data-category="Chinese" data-rating="4.7" data-fast="0" data-veg="1"><div class="food-photo chinese">🍜</div><div class="card-body"><div class="card-title"><h3>Wok & Bowl</h3><span class="rating">4.7 ★</span></div><p>Chinese · Noodles · ₹350 for two</p><div class="meta"><span>⏱ 35–45 min</span><span>📍 2.4 km</span></div><button class="outline" style="width:100%;margin-top:12px" data-add="Veg Hakka Noodles" data-price="180" data-emoji="🍜">Add popular dish · ₹180</button></div></article>
+ <article class="card" data-name="Sweet Cravings" data-category="Desserts" data-rating="4.4" data-fast="1" data-veg="1"><div class="food-photo" style="background:linear-gradient(135deg,#f8d5d7,#d89b8e)">🍰</div><div class="card-body"><div class="card-title"><h3>Sweet Cravings</h3><span class="rating">4.4 ★</span></div><p>Desserts · Bakery · ₹200 for two</p><div class="meta"><span>⏱ 20–30 min</span><span>📍 1.5 km</span></div><button class="outline" style="width:100%;margin-top:12px" data-add="Chocolate Cake" data-price="120" data-emoji="🍰">Add popular dish · ₹120</button></div></article>
+ <article class="card" data-name="Dosa Corner" data-category="South Indian" data-rating="4.6" data-fast="0" data-veg="1"><div class="food-photo south">🥞</div><div class="card-body"><div class="card-title"><h3>Dosa Corner</h3><span class="rating">4.6 ★</span></div><p>South Indian · Breakfast · ₹180 for two</p><div class="meta"><span>⏱ 30–40 min</span><span>📍 1.1 km</span></div><button class="outline" style="width:100%;margin-top:12px" data-add="Masala Dosa" data-price="90" data-emoji="🥞">Add popular dish · ₹90</button></div></article>
+</div></section>
+</main>
+<footer id="about"><div class="wrap foot"><div><div class="brand" style="color:white">Foodie<span>Go</span></div><p>Good Food • Great Mood</p></div><p>Demo experience · Sample restaurants and prices · No real orders or payments</p><p>© 2026 FoodieGo UI Concept</p></div></footer>
+<div class="overlay" id="overlay"><aside class="drawer"><div class="drawer-head"><h2>Your cart 🛒</h2><button class="close" id="closeCart" aria-label="Close cart">×</button></div><div id="cartItems"></div><div id="cartSummary"></div></aside></div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const cart={};const grid=document.getElementById('restaurantGrid'),toast=document.getElementById('toast');
+function notify(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1900)}
+function count(){return Object.values(cart).reduce((s,x)=>s+x.qty,0)}
+function renderCart(){document.getElementById('cartCount').textContent=count();const items=document.getElementById('cartItems'),summary=document.getElementById('cartSummary');const entries=Object.entries(cart);
+ if(!entries.length){items.innerHTML='<div class="empty"><div style="font-size:48px">🛍️</div><h3>Your cart is waiting</h3><p>Add a delicious dish to get started.</p></div>';summary.innerHTML='';return}
+ items.innerHTML=entries.map(([name,x])=>`<div class="cart-item"><div class="mini-food">${x.emoji}</div><div class="item-info"><b>${name}</b><small>₹${x.price} each</small></div><div class="qty"><button data-change="${name}" data-delta="-1">−</button><b>${x.qty}</b><button data-change="${name}" data-delta="1">+</button></div></div>`).join('');
+ const subtotal=entries.reduce((s,[,x])=>s+x.price*x.qty,0),delivery=subtotal?35:0,fee=subtotal?10:0,total=subtotal+delivery+fee;
+ summary.innerHTML=`<div class="summary"><div class="sumrow"><span>Item total</span><b>₹${subtotal}</b></div><div class="sumrow"><span>Delivery fee</span><b>₹${delivery}</b></div><div class="sumrow"><span>Platform fee</span><b>₹${fee}</b></div><div class="sumrow total"><span>Total</span><b>₹${total}</b></div><button class="primary checkout" id="checkout">Continue to checkout</button></div>`;
+ document.getElementById('checkout').onclick=()=>{notify('Demo checkout only — no payment was made.');};
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-add]');if(b){const n=b.dataset.add;if(!cart[n])cart[n]={price:+b.dataset.price,emoji:b.dataset.emoji,qty:0};cart[n].qty++;renderCart();notify(n+' added to cart');}
+ const q=e.target.closest('[data-change]');if(q){const n=q.dataset.change;cart[n].qty+=+q.dataset.delta;if(cart[n].qty<=0)delete cart[n];renderCart();}
+ const heart=e.target.closest('.heart');if(heart){heart.textContent=heart.textContent==='♡'?'♥':'♡';heart.style.color=heart.textContent==='♥'?'var(--red)':'';}
+});
+document.getElementById('openCart').onclick=()=>{document.getElementById('overlay').classList.add('show');renderCart()};
+document.getElementById('closeCart').onclick=()=>document.getElementById('overlay').classList.remove('show');
+document.getElementById('overlay').addEventListener('click',e=>{if(e.target.id==='overlay')e.currentTarget.classList.remove('show')});
+let activeCategory='All',activeFilter='All';
+function filterCards(){const term=document.getElementById('searchInput').value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{const matchText=(c.dataset.name+' '+c.textContent).toLowerCase().includes(term);const matchCat=activeCategory==='All'||c.dataset.category===activeCategory;const matchFilter=activeFilter==='All'||(activeFilter==='Rating'?+c.dataset.rating>=4.7:activeFilter==='Fast'?c.dataset.fast==='1':c.dataset.veg==='1');c.style.display=matchText&&matchCat&&matchFilter?'':'none';});}
+document.querySelectorAll('.category').forEach(b=>b.onclick=()=>{document.querySelectorAll('.category').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeCategory=b.dataset.category;filterCards()});
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeFilter=b.dataset.filter;filterCards()});
+document.getElementById('searchBtn').onclick=filterCards;document.getElementById('searchInput').addEventListener('input',filterCards);
+renderCart();
+</script>
+</body></html>
